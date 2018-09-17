@@ -1,4 +1,4 @@
-# event-manager
+# Event Zone
 
 > SPA with stubs VueJs
 
