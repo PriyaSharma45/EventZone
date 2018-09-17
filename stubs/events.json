@@ -1,0 +1,12 @@
+[
+    {
+        "id" : 478329,
+        "name" : "Cycling",
+        "description" : "Rasing fund for the Nagaland floods",
+        "duration" : "04:00pm",
+        "location" : "Besant nagar",
+        "fees" : 200,
+        "participantscount" : 60,
+        "organizeremail" : "test@test.com"
+    }
+]
