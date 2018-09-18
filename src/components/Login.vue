@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <h1 class="title">Sign In To Your Account</h1>
+    <h1 class="title">Event Zone</h1>
+    <h2 class="title">Sign In To Your Account</h2>
+    <div class="error" v-if="authErr">{{ authErr }}</div>
     <div class="signup">
       <div class="div-input"> 
         <label class="form__label">Email</label>
@@ -12,7 +14,7 @@
         <input type="password"  :class="{ 'form-input--error' : $v.password.model && $v.password.$invalid }" v-model="password" placeholder=""/>
         <div class="error" v-if="!$v.password.required">Password is required</div>
       </div>
-      <button class="button-login">Login</button>
+      <button class="button-login" @click="login">Login</button>
     </div>
   </div>
 </template>
@@ -22,16 +24,23 @@ import { required, minLength, between } from 'vuelidate/lib/validators'
 import { helpers } from 'vuelidate/lib/validators'
 
 const isAlpha = (params) => {
-  return (/^[a-zA-Z]*$/).test(params);
+  return (/^[a-zA-Z]*$/).test(params)
   }
 
 export default {
-  name: 'app',
+  name: 'login',
   data() {
     return {
-      name: '',
       email : '',
-      password: ''
+      password: '',
+    }
+  },
+  computed: {
+    authErr() {
+	    return this.$store.state.authErr
+    },
+    isAuth() {
+      return this.$store.state.isAuth
     }
   },
   validations: {
@@ -45,7 +54,21 @@ export default {
     },
     password: {
       required
-    }
+    },
+  },
+  beforeMount() {
+    console.log('bfMount');
+    this.$store.dispatch('clearStateAction')
+  },
+  methods: {
+     login(){
+       const userObj = {
+         email: this.email,
+         password: this.password
+       }
+       this.$store.dispatch('userAuthenticate',userObj)
+       if(this.isAuth) this.$router.push({ path: `/dashboard` })
+     } 
   }
 }
 </script>

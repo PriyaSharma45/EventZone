@@ -8,5 +8,15 @@
         "fees" : 200,
         "participantscount" : 60,
         "organizeremail" : "test@test.com"
+    },
+    {
+        "id" : 37402,
+        "name" : "Cycling",
+        "description" : "Rasing fund for the Nagaland floods",
+        "duration" : "04:00pm",
+        "location" : "Besant nagar",
+        "fees" : 200,
+        "participantscount" : 60,
+        "organizeremail" : "test@test.com"
     }
 ]

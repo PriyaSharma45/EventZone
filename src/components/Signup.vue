@@ -1,25 +1,29 @@
 <template>
   <div id="app">
-    <h1 class="title">Sign-up for Amazing events near you</h1>
+    <h1 class="title">Event Zone</h1>
+    <h2 class="title">Sign-up for Amazing events near you</h2>
+    <div class="error" v-if="authErr">{{ authErr }}</div>
     <div class="signup">
       <div class="div-input">
         <label class="form__label">Name</label>
         <input type="text" :class="{ 'form-input--error' : $v.name.model && $v.name.$invalid }" v-model="name" placeholder="Name"/>
         <div class="error" v-if="!$v.name.minLength">Name must have at least {{$v.name.$params.minLength.min}} letters.</div>
         <div class="error" v-if="!$v.name.isAlpha">Name must contain only alphabets</div>
-        <div class="error" v-if="!$v.name.required">Password is required</div>
+        <div class="error" v-if="!$v.name.required">Name is required</div>
       </div>
       <div class="div-input"> 
         <label class="form__label">Email</label>
         <input type="email"  :class="{ 'form-input--error' : $v.email.model && $v.email.$invalid }" v-model="email" placeholder="email"/>
         <div class="error" v-if="!$v.email.required">Email is required</div>
+        <div class="error" v-if="!$v.email.email">Email should be in proper format</div>
       </div>
       <div class="div-input">
         <label class="form__label">Password</label>
         <input type="password"  :class="{ 'form-input--error' : $v.password.model && $v.password.$invalid }" v-model="password" placeholder=""/>
         <div class="error" v-if="!$v.password.required">Password is required</div>
+        <div class="error" v-if="!$v.password.minLength">Name must have at least {{$v.password.$params.minLength.min}} letters.</div>
       </div>
-      <button class="button-signup">Sign up</button>
+      <button class="button-signup" @click="signup">Sign up</button>
       <router-link tag="a" to="/login">
         Or login
       </router-link>
@@ -28,34 +32,59 @@
 </template>
 
 <script>
-import { required, minLength, between } from 'vuelidate/lib/validators'
+import { required, minLength, between, email } from 'vuelidate/lib/validators'
 import { helpers } from 'vuelidate/lib/validators'
+import users from '../stubs/users.json'
 
 const isAlpha = (params) => {
   return (/^[a-zA-Z]*$/).test(params);
   }
 
 export default {
-  name: 'app',
+  name: 'signup',
   data() {
     return {
       name: '',
       email : '',
-      password: ''
+      password: '',
+    }
+  },
+  computed: {
+    authErr() {
+	    return this.$store.state.authErr
+    },
+    isAuth() {
+      return this.$store.state.isAuth
     }
   },
   validations: {
     name: {
       required,
       minLength: minLength(4),
-      isAlpha,      
+      isAlpha, 
     },
     email: {
-      required
+      required,
+      email,     
     },
     password: {
-      required
+      required,
+      minLength: minLength(8),
     }
+  },
+  mounted() {
+    this.$store.dispatch('clearStateAction')
+  },
+  methods: {
+    signup(){
+       const userObj = {
+         email: this.email,
+         name: this.name,
+         password: this.password
+       }
+       this.$store.dispatch('saveUser',userObj)
+       if(this.isAuth) this.$router.push({ path: `/dashboard` })
+     }
   }
 }
 </script>
@@ -125,6 +154,10 @@ export default {
   width: 150px;
 }
 
+.button-signup :disabled{
+  background: #ccc;
+  color: white;
+}
 
 .error {
   color: red;
