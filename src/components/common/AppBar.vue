@@ -10,7 +10,6 @@ export default {
     name: 'AppBar',
     computed: {
         user() {
-            console.log(this.$store.state.user);
 	        return this.$store.state.user
         }  
     }

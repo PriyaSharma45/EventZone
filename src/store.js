@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { authenticate, signUpAndAuthenticate } from './stubs/userStubFn'
+import { getAllEvent } from './stubs/eventStubFn'
 import isEmpty from 'lodash/isEmpty'
 
 Vue.use(Vuex)
@@ -61,6 +62,10 @@ const store = new Vuex.Store({
       },
       clearStateAction({ commit }) {
         commit('clearState')
+      },
+      getEventsAction({ commit }){
+        const event = getAllEvent()
+        commit('setEvents', event)
       }
     }
 })

@@ -3,20 +3,22 @@
         "id" : 478329,
         "name" : "Cycling",
         "description" : "Rasing fund for the Nagaland floods",
-        "duration" : "04:00pm",
+        "duration" : "3pm - 4pm",
         "location" : "Besant nagar",
         "fees" : 200,
         "participantscount" : 60,
+        "tags" : "Outdoor Activity",
         "organizeremail" : "test@test.com"
     },
     {
         "id" : 37402,
         "name" : "Cycling",
-        "description" : "Rasing fund for the Nagaland floods",
-        "duration" : "04:00pm",
-        "location" : "Besant nagar",
-        "fees" : 200,
-        "participantscount" : 60,
-        "organizeremail" : "test@test.com"
+        "description" : "Rasing fund for the Kerala floods",
+        "duration" : "05:00pm - 6:00pm",
+        "location" : "KK nagar",
+        "fees" : 500,
+        "participantscount" : 100,
+        "tags" : "Outdoor activity",
+        "organizeremail" : "test1@test.com"
     }
 ]
