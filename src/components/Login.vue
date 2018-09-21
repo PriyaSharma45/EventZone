@@ -3,7 +3,7 @@
     <h1 class="title">Event Zone</h1>
     <h2 class="title">Sign In To Your Account</h2>
     <div class="error" v-if="authErr">{{ authErr }}</div>
-    <div class="signup">
+    <div class="formContainer">
       <div class="div-input"> 
         <label class="form__label">Email</label>
         <input type="email"  :class="{ 'form-input--error' : $v.email.model && $v.email.$invalid }" v-model="email" placeholder="email"/>
@@ -79,22 +79,3 @@ export default {
 }
 </script>
 
-<style lang="scss">
-
-    .button-login {
-        border: 0;
-        border-radius: 3px;
-        background: #00b412;
-        padding: 7px;
-        font-size: 18px;
-        color: white;
-        margin: 5px;
-        width: 150px;
-    }
-
-    .button-login:disabled {
-      background: #ccc !important;
-      color: white !important;
-    }
-
-</style>

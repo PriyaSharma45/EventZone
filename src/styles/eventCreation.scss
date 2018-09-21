@@ -1,0 +1,75 @@
+.holder {
+     margin: 5%;
+}
+
+.description {
+    width: inherit;
+    height: 200px;
+    font-size: 14px;
+}
+
+.fieldaddition{
+    display: flex;
+    margin: 15px;
+    height: 35px;
+    width: 100%;
+    justify-content: space-between;
+
+    input {
+        width: 100%;
+        margin: 0 20px 0px 0;
+        padding: 5px;
+    }
+
+    button {
+         width: 30px;
+        color: white;
+        font-size: 15px;
+        color: red;
+        font-weight: bold;
+        background: no-repeat;
+        border: 0;
+    }
+}
+
+.addButton {
+    width: 75px;
+    border: 0;
+    background: greenyellow;
+    color: white;
+    padding: 10px;
+    border-radius: 20px; 
+    margin: 20px;
+}
+
+
+.createButton {
+    width: 150px;
+    border: 0;
+    background: #00b4d2;
+    color: white;
+    padding: 10px;
+    border-radius: 5px; 
+    margin: 20px;
+}
+
+.updateButton {
+    width: 150px;
+    border: 0;
+    background: #f5a208;
+    color: white;
+    padding: 10px;
+    border-radius: 5px; 
+    margin: 20px;
+}
+
+
+.deleteButton {
+    width: 150px;
+    border: 0;
+    background: red;
+    color: white;
+    padding: 10px;
+    border-radius: 5px; 
+    margin: 20px;
+}

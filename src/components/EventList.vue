@@ -21,17 +21,4 @@ export default {
 }
 </script>
 
-<style lang="scss">
-    .eventlist {
-        width: inherit;
-        padding: 5% 20%;
-        display: flex;
-        flex-flow: column;
-        justify-content: space-evenly;
-    }
-
-    .eventContainer {
-        margin: 25px 10px;
-    }
-</style>
 

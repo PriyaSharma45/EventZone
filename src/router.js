@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Signup from './components/Signup'
 import Login from './components/Login'
 import Dashboard from './components/Dashboard'
+import EventCreation from './components/EventCreation'
 
 Vue.use(Router)
 
@@ -21,6 +22,11 @@ const routes = [
     path: '/dashboard',
     name: 'Dashboard',
     component: Dashboard
+  },
+  {
+    path: '/create',
+    name: 'EventCreation',
+    component: EventCreation
   }
 ]
 

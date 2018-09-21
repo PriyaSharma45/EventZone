@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { authenticate, signUpAndAuthenticate } from './stubs/userStubFn'
-import { getAllEvent } from './stubs/eventStubFn'
+import { getAllEvent, createEvent, replaceUpdatedEvent, deleteEvent } from './stubs/eventStubFn'
 import isEmpty from 'lodash/isEmpty'
 
 Vue.use(Vuex)
@@ -14,28 +14,57 @@ const DEFAULT_STATE = {
     email: '',
   },
   events: [],
+  currentEvent: {},
 };
 
 const store = new Vuex.Store({
-    state: {...DEFAULT_STATE},
+    state: {
+      isAuth: false,
+      authErr : '',
+      user : {
+        name: '',
+        email: '',
+     },
+      events: [],
+      currentEvent: {},
+    },
     mutations: {
-        setUserAndAuthenticate(state, userObj){
-          state.user.name = userObj.name;
-          state.user.email = userObj.email;
+        setUserAndAuthenticate(state, payload){
+          state.user.name = payload.name;
+          state.user.email = payload.email;
           state.isAuth = true;
         },
-        setEvents(state, events){
-          state.events = events;
+        setEvents(state, payload){
+          state.events = payload;
         },
-        setAuthError(state, err){
-          state.authErr = err;
+        setCurrentEvent(state, payload){
+          state.currentEvent = payload;
+        },
+        addNewEvent(state, payload){
+          state.events.push(payload)
+        },
+        setAuthError(state, payload){
+          state.authErr = payload;
           state.isAuth = false;
+        },
+        updateEvent(state, payload) {
+          var event = state.events.find((event) => event.id === payload.id)
+          Object.keys(event).forEach(key => {
+            event[key] = payload[key];
+          });
+        },
+        deleteSelected(state, payload){
+          var index = state.events.findIndex((event) => event.id === payload)
+          state.events.splice(index, 1)
         },
         clearState(state) {
           Object.keys(state).forEach(key => {
             state[key] = DEFAULT_STATE[key];
           });
         },
+        clearCurrentEvent(state) {
+          state.currentEvent = {}
+        },  
     },
     actions: {
       userAuthenticate({ commit }, userObj){
@@ -66,6 +95,24 @@ const store = new Vuex.Store({
       getEventsAction({ commit }){
         const event = getAllEvent()
         commit('setEvents', event)
+      },
+      createNewEvent({ commit }, event) {
+        const newEvent = createEvent(event)
+        commit('addNewEvent', newEvent);
+      },
+      setCurrentEventAction({ commit }, event) {
+        commit('setCurrentEvent', event)
+      },
+      updateEventAction({ commit }, event) {
+        const updatedEvent = replaceUpdatedEvent(event)
+        commit('updateEvent', event)
+      },
+      clearCurrentEventAction({ commit }) {
+        commit('clearCurrentEvent')
+      },
+      deleteSelectedEvent({ commit }, eventId){
+        const id = deleteEvent(eventId)
+        commit('deleteSelected', id)
       }
     }
 })

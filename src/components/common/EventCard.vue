@@ -18,8 +18,12 @@
         <div class="tag">
             Tag : {{ event.tags }}
         </div>
-        <button v-if="userEmail !== event.organizeremail" class="register">Register</button>
-        <button v-if="userEmail === event.organizeremail" class="edit">Edit</button>
+        <div class="extras" v-for="(extrafield, index) in event.extraFields" :key="index">
+            {{ extrafield.key }} : {{ extrafield.value }}
+        </div>
+        <button v-if="userEmail !== event.organizeremail" @click="register" class="register">Register</button>
+        <button v-if="userEmail === event.organizeremail" @click="editEvent" class="edit">Edit</button>
+        <button v-if="userEmail === event.organizeremail" class="delete" @click="deleteEvent">Delete</button>
     </div>
 </template>
 
@@ -31,34 +35,18 @@ export default {
         userEmail(){
             return this.$store.state.user.email
         }
-    }
+    },
+    methods: {
+        editEvent(){
+            this.$store.dispatch('setCurrentEventAction', this.event)
+            this.$router.push({ path: `/create` })
+        },
+        register() {
+
+        },
+        deleteEvent(){
+            this.$store.dispatch('deleteSelectedEvent', this.event.id)
+        }
+    },
 }
 </script>
-
-<style lang="scss">
-.eventcard{
-    width: inherit;
-    border: 1px solid;
-    box-shadow: 5px 10px #ccc;
-    border-radius: 15px;
-
-    div {
-        text-align: left;
-        margin: 10px;
-        padding: 5px;
-    }
-}
-.register,.edit{
-    margin: 0 0 10px 5px;
-    padding: 10px;
-    font-size: 16px;
-    color: #eeeeef;
-    border: 0;
-    border-radius: 15px;
-    background: green;
-}
-.eventname{
-    font-size:  25px;
-    font-weight: bold;
-}
-</style>

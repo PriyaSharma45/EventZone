@@ -8,3 +8,10 @@ export const noErrors = (collection) => keys(collection)
         .reduce((acc, value) =>  fieldObj[value] && acc, true);
     return acc && anyErr;
 }, true)
+
+
+export const updateArray = (array, newItem) => {
+    const objectWithKeys = array.reduce((acc, item) => Object.assign(acc, { [item.id] : item }), {})
+    objectWithKeys[newItem.id] = newItem;
+    return keys(objectWithKeys).reduce((acc, key) => acc.concat([ objectWithKeys[key] ]), [])
+}

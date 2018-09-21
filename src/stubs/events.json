@@ -8,7 +8,8 @@
         "fees" : 200,
         "participantscount" : 60,
         "tags" : "Outdoor Activity",
-        "organizeremail" : "test@test.com"
+        "organizeremail" : "test@test.com",
+        "extraFields" : []
     },
     {
         "id" : 37402,
@@ -19,6 +20,7 @@
         "fees" : 500,
         "participantscount" : 100,
         "tags" : "Outdoor activity",
-        "organizeremail" : "test1@test.com"
+        "organizeremail" : "test1@test.com",
+        "extraFields" : []
     }
 ]

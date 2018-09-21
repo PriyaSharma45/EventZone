@@ -2,6 +2,9 @@
     <div class="dashboard">
         <AppBar/>
         <EventList/>
+        <router-link tag="a" to="/create">
+        back
+      </router-link>
     </div>      
 </template>
 
@@ -10,19 +13,24 @@
 import eventslist from '../stubs/events.json'
 import AppBar from './common/AppBar.vue'
 import EventList from './EventList.vue'
+import isEmpty from 'lodash/isEmpty'
+
 export default {
     name: 'dashboard',
     components : {
         AppBar,
         EventList
     },
+    computed: {
+        events() {
+            return this.$store.state.events
+        }
+    },
     mounted() {
-        this.$store.dispatch('getEventsAction')
+        if(isEmpty(this.events))
+            this.$store.dispatch('getEventsAction')
     }
 }
 </script>
 
-<style lang="scss">
-
-</style>
 
