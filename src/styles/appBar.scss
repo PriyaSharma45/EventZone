@@ -2,12 +2,30 @@
     background-color: rgb(178, 178, 238);
     width: 100%;
     top: 0;
-}
-.appbar{
     display: flex;
     flex-flow: row;
     align-items: center;
     justify-content: space-between;
     padding: 0 10px;
     width: inherit;
+}
+
+.search-wrapper {
+    border: 0;
+    border-radius: 20px;
+    padding: 10px;
+    font-size: 14px;
+    padding: 10px;
+    
+    input {
+        border: 0;
+        border-radius: 20px;
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    button {
+        border: 0;
+        font-weight: bold;
+    }
 }

@@ -10,8 +10,5 @@ export const noErrors = (collection) => keys(collection)
 }, true)
 
 
-export const updateArray = (array, newItem) => {
-    const objectWithKeys = array.reduce((acc, item) => Object.assign(acc, { [item.id] : item }), {})
-    objectWithKeys[newItem.id] = newItem;
-    return keys(objectWithKeys).reduce((acc, key) => acc.concat([ objectWithKeys[key] ]), [])
-}
+export const filterArray = (events, search) =>  search ? events.filter(event => 
+    event.tag.includes(search) || event.name.includes(search) || event.desvription.includes(search)) : events

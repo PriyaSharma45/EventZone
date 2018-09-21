@@ -12,10 +12,11 @@ const DEFAULT_STATE = {
   user : {
     name: '',
     email: '',
-  },
+ },
   events: [],
   currentEvent: {},
-};
+  searchTerm: ''
+}
 
 const store = new Vuex.Store({
     state: {
@@ -27,6 +28,15 @@ const store = new Vuex.Store({
      },
       events: [],
       currentEvent: {},
+      searchTerm: ''
+    },
+    getters: {
+      filteredArray(state) {
+        if(isEmpty(state.events)) 
+          return state.events
+        return state.events.filter(event => event.name.toLowerCase().includes(state.searchTerm.toLowerCase()) ||
+         event.tags.toLowerCase().includes(state.searchTerm.toLowerCase()))
+      },
     },
     mutations: {
         setUserAndAuthenticate(state, payload){
@@ -64,7 +74,13 @@ const store = new Vuex.Store({
         },
         clearCurrentEvent(state) {
           state.currentEvent = {}
-        },  
+        },
+        setSearch(state, payload) {
+          state.searchTerm = payload
+        },
+        clearSearch(state) {
+          state.searchTerm = ''
+        }
     },
     actions: {
       userAuthenticate({ commit }, userObj){
@@ -110,9 +126,15 @@ const store = new Vuex.Store({
       clearCurrentEventAction({ commit }) {
         commit('clearCurrentEvent')
       },
+      clearSearchAction({ commit }) {
+        commit('clearSearch')
+      },
       deleteSelectedEvent({ commit }, eventId){
         const id = deleteEvent(eventId)
         commit('deleteSelected', id)
+      },
+      setSearchAction({ commit }, searchTerm){
+        commit('setSearch', searchTerm)
       }
     }
 })

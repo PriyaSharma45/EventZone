@@ -20,7 +20,7 @@
         <label class="form__label">Password</label>
         <input type="password"  :class="{ 'form-input--error' : $v.password.model && $v.password.$invalid }" v-model="password" placeholder=""/>
         <div class="error" v-if="!$v.password.required && password">Password is required</div>
-        <div class="error" v-if="!$v.password.minLength && password">Name must have at least {{$v.password.$params.minLength.min}} letters.</div>
+        <div class="error" v-if="!$v.password.minLength && password">Password must have at least {{$v.password.$params.minLength.min}} letters.</div>
       </div>
       <button :disabled="!hasNoErrors" class="button-signup" @click="signup">Sign up</button>
       <router-link tag="a" to="/login">
@@ -32,12 +32,11 @@
 
 <script>
 import { required, minLength, between, email } from 'vuelidate/lib/validators'
-import { helpers } from 'vuelidate/lib/validators'
 import { noErrors } from '../utils'
 
 const isAlpha = (params) => {
   return (/^[a-zA-Z]\s[a-zA-Z]*$/).test(params);
-  }
+}
 
 export default {
   name: 'signup',

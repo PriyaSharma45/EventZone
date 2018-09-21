@@ -1,6 +1,6 @@
 <template>
     <div class="eventlist">
-        <div class="eventContainer" v-for="event in events" :key="event.id">
+        <div class="eventContainer" v-for="event in filteredArray" :key="event.id">
             <EventCard :event="event"/>
         </div>
     </div>
@@ -8,16 +8,17 @@
 
 <script>
 import EventCard from './common/EventCard.vue'
+
 export default {
     name:'EventList',
     components : {
         EventCard
     },
     computed: {
-        events(){
-            return this.$store.state.events
-        } 
-    }
+        filteredArray() {
+            return this.$store.getters.filteredArray
+        },
+    },
 }
 </script>
 

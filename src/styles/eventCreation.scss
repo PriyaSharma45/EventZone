@@ -53,6 +53,11 @@
     margin: 20px;
 }
 
+.createButton:disabled {
+    background: #ccc !important;
+    color: white !important;
+  }
+
 .updateButton {
     width: 150px;
     border: 0;
@@ -63,6 +68,10 @@
     margin: 20px;
 }
 
+.updateButton:disabled {
+    background: #ccc !important;
+    color: white !important;
+  }
 
 .deleteButton {
     width: 150px;
@@ -72,4 +81,12 @@
     padding: 10px;
     border-radius: 5px; 
     margin: 20px;
+}
+
+.form-input {
+    border: 1px solid #ccc;
+}
+
+.form-input--error {
+    border: 1px solid #ff0022;
 }

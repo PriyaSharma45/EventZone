@@ -3,7 +3,7 @@
         <AppBar/>
         <EventList/>
         <router-link tag="a" to="/create">
-        back
+        Create new events
       </router-link>
     </div>      
 </template>
