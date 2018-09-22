@@ -15,8 +15,11 @@
         <div class="fees">
             Fees : {{ event.fees }}
         </div>
+        <div class="participantCount">
+            Max participants : {{ event.participantscount }}
+        </div>
         <div class="tag">
-            Tag : {{ event.tags }}
+            {{ event.tags }}
         </div>
         <div class="extras" v-for="(extrafield, index) in event.extraFields" :key="index">
             {{ extrafield.key }} : {{ extrafield.value }}

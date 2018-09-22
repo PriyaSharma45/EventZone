@@ -1,10 +1,10 @@
 <template>
     <div class="dashboard">
         <AppBar/>
-        <EventList/>
         <router-link tag="a" to="/create">
-        Create new events
-      </router-link>
+             + Create Event
+        </router-link>
+        <EventList/>
     </div>      
 </template>
 
