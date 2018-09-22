@@ -33,13 +33,23 @@ const store = new Vuex.Store({
       notifications: []
     },
     getters: {
-      filteredArray(state) {
+      filteredArray: (state) => {
         if(isEmpty(state.events)) 
           return state.events
         return state.events.filter(event => event.name.toLowerCase().includes(state.searchTerm.toLowerCase()) ||
          event.tags.toLowerCase().includes(state.searchTerm.toLowerCase()))
       },
       isLoggedIn: state => state.isAuth,
+      getCount: state => {
+        if(isEmpty(state.notifications)) return 0;
+        return state.notifications.reduce((acc, notification) => {
+          if(!notification.read){
+            return acc + 1
+          } else {
+            return acc
+          }
+        }, 0)
+      }
     },
     mutations: {
         setUserAndAuthenticate(state, payload){
@@ -90,6 +100,9 @@ const store = new Vuex.Store({
         },
         setNotifcation(state, payload){
           state.notifications = payload
+        },
+        readNotification(state){
+          state.notifications.forEach(notification => notification.read = true)
         }
     },
     actions: {
@@ -152,9 +165,11 @@ const store = new Vuex.Store({
       getNotifcationAction({ commit }, email){
         const notifications = getNotification(email)
         commit('setNotifcation',notifications)
+      },
+      readNotificationAction({commit}){
+        commit('readNotification')
       }
     }
 })
-
 
 export default store

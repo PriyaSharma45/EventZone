@@ -18,7 +18,7 @@
       </div>
       <button :disabled="!hasNoErrors" class="button-login" @click="login">Login</button>
       <router-link tag="a" to="/">
-        back
+        Sign up
       </router-link>
     </div>
   </div>

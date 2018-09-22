@@ -45,6 +45,18 @@
     border-radius: 5px;
 }
 
+.dropdown:before {
+    content: ' ';
+    height: 0;
+    position: absolute;
+    width: 0;
+    top: -10px;
+    right: 124px;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 10px solid white;
+}
+
 .notificationList{
     padding: 10px;
 }
@@ -55,10 +67,22 @@
     align-items: center;
 }
 
-.notification{
+.notificationUnread{
     margin: 0 10px;
     border: 0px;
     border-radius: 50%;
     padding: 10px;
     font-weight: bold;
+    background: red;
+    color: white;
+}
+
+.notificationRead {
+    margin: 0 10px;
+    border: 0px;
+    border-radius: 50%;
+    padding: 10px;
+    font-weight: bold;
+    background: #ccc;
+    color: black;
 }
