@@ -6,7 +6,15 @@
             <button @click="handleClick">Search</button>
             <button @click="clearSearch">Clear</button>
         </div>
-        <div class="name">Welcome {{ user.name }}</div>
+        <div class="namecontainer">
+            <button class="notification" @click="toggleDropDown">{{ notifications.length }}</button>
+            <div v-if="toggle" class="dropdown">
+                <div class="notificationList" v-for="notification in notifications " :key="notification.id">
+                    <div class="notificationObj"><b>{{ notification.userName }}</b> regitered for <b>{{ notification.eventName }}</b></div>
+                </div>
+            </div>
+            <div class="name">Welcome {{ user.name }}</div>
+        </div> 
     </div>
 </template>
 
@@ -17,11 +25,15 @@ export default {
     data() {
         return {
             searchTerm: '',
+            toggle: false
         }
     },
     computed: {
         user() {
 	        return this.$store.state.user
+        },
+        notifications(){
+            return this.$store.state.notifications
         }
     },
     methods: {
@@ -30,6 +42,9 @@ export default {
         },
         clearSearch() {
             this.$store.dispatch('clearSearchAction')
+        },
+        toggleDropDown(){
+            this.toggle = !this.toggle
         }
     }
 }

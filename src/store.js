@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { authenticate, signUpAndAuthenticate } from './stubs/userStubFn'
-import { getAllEvent, createEvent, replaceUpdatedEvent, deleteEvent } from './stubs/eventStubFn'
+import { getAllEvent, createEvent, replaceUpdatedEvent, deleteEvent, getNotification } from './stubs/eventStubFn'
 import isEmpty from 'lodash/isEmpty'
 
 Vue.use(Vuex)
@@ -15,7 +15,8 @@ const DEFAULT_STATE = {
  },
   events: [],
   currentEvent: {},
-  searchTerm: ''
+  searchTerm: '',
+  notifications: []
 }
 
 const store = new Vuex.Store({
@@ -28,7 +29,8 @@ const store = new Vuex.Store({
      },
       events: [],
       currentEvent: {},
-      searchTerm: ''
+      searchTerm: '',
+      notifications: []
     },
     getters: {
       filteredArray(state) {
@@ -85,6 +87,9 @@ const store = new Vuex.Store({
         setRegistered(state, payload){
           var regEvent = state.events.find(item => item.id === payload)
           regEvent.registered = true;
+        },
+        setNotifcation(state, payload){
+          state.notifications = payload
         }
     },
     actions: {
@@ -143,6 +148,10 @@ const store = new Vuex.Store({
       },
       setRegisteredAction({ commit }, eventId){
         commit('setRegistered', eventId)
+      },
+      getNotifcationAction({ commit }, email){
+        const notifications = getNotification(email)
+        commit('setNotifcation',notifications)
       }
     }
 })

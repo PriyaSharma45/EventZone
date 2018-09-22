@@ -24,11 +24,15 @@ export default {
     computed: {
         events() {
             return this.$store.state.events
+        },
+        userEmail(){
+            return this.$store.state.user.email
         }
     },
     mounted() {
         if(isEmpty(this.events))
             this.$store.dispatch('getEventsAction')
+        this.$store.dispatch('getNotifcationAction', this.userEmail)
     }
 }
 </script>

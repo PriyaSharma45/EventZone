@@ -25,13 +25,13 @@
         </div>
         <div class="div-input">
             <label class="form__label">Event fee</label>
-            <input :class="{ 'form-input--error' : $v.fees.model && $v.fees.$invalid }" v-model="fees" placeholder="Event fee" number>
+            <input :class="{ 'form-input--error' : $v.fees.model && $v.fees.$invalid }" v-model="fees" placeholder="Event fee" type="number">
             <div class="error" v-if="!$v.fees.required && fees">Fees is required</div>
             <div class="error" v-if="!$v.fees.isNumberic">Fees should be number</div>
         </div>
         <div class="div-input">
             <label class="form__label">Max participants</label>
-            <input :class="{ 'form-input--error' : $v.maxparticipants.model && $v.maxparticipants.$invalid }" v-model="maxparticipants" placeholder="Max participant" number>
+            <input :class="{ 'form-input--error' : $v.maxparticipants.model && $v.maxparticipants.$invalid }" v-model="maxparticipants" placeholder="Max participant" type="number">
             <div class="error" v-if="!$v.maxparticipants.required && maxparticipants">Max participants is required</div>
             <div class="error" v-if="!$v.maxparticipants.isNumberic">Max participants should be number</div>
         </div>

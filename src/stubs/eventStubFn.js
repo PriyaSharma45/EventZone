@@ -1,4 +1,5 @@
 import events from './events.json'
+import notifications from './notifications.json'
 
 export const getAllEvent = () => {
     return Object.assign([], events);
@@ -15,3 +16,10 @@ export const replaceUpdatedEvent = (updatedEvent) => {
 }
 
 export const deleteEvent = (eventId) => eventId
+
+export const getNotification = (email) => {
+    if(email === "test@test.com"){
+        return notifications
+    }
+    return []
+}
