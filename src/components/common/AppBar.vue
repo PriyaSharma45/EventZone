@@ -45,6 +45,7 @@ export default {
             this.$store.dispatch('setSearchAction', this.searchTerm)
         },
         clearSearch() {
+            this.searchTerm = ''
             this.$store.dispatch('clearSearchAction')
         },
         toggleDropDown(){
