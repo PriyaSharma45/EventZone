@@ -7,6 +7,7 @@ import EventCreation from './components/EventCreation'
 
 Vue.use(Router)
 
+
 const routes = [
   { 
     path: '/',
@@ -21,12 +22,18 @@ const routes = [
   {
     path: '/dashboard',
     name: 'Dashboard',
-    component: Dashboard
+    component: Dashboard,
+    meta: { 
+      requiresAuth: true
+    }
   },
   {
     path: '/create',
     name: 'EventCreation',
-    component: EventCreation
+    component: EventCreation,
+    meta: { 
+      requiresAuth: true
+    }
   }
 ]
 

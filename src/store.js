@@ -37,6 +37,7 @@ const store = new Vuex.Store({
         return state.events.filter(event => event.name.toLowerCase().includes(state.searchTerm.toLowerCase()) ||
          event.tags.toLowerCase().includes(state.searchTerm.toLowerCase()))
       },
+      isLoggedIn: state => state.isAuth,
     },
     mutations: {
         setUserAndAuthenticate(state, payload){
@@ -80,6 +81,10 @@ const store = new Vuex.Store({
         },
         clearSearch(state) {
           state.searchTerm = ''
+        },
+        setRegistered(state, payload){
+          var regEvent = state.events.find(item => item.id === payload)
+          regEvent.registered = true;
         }
     },
     actions: {
@@ -135,6 +140,9 @@ const store = new Vuex.Store({
       },
       setSearchAction({ commit }, searchTerm){
         commit('setSearch', searchTerm)
+      },
+      setRegisteredAction({ commit }, eventId){
+        commit('setRegistered', eventId)
       }
     }
 })

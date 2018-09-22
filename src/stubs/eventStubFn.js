@@ -6,7 +6,8 @@ export const getAllEvent = () => {
 
 export const createEvent = (event) => {
     const id = Math.random(3, 1999);
-    return { ...event, id }
+    const registered = false;
+    return { ...event, id, registered }
 }
 
 export const replaceUpdatedEvent = (updatedEvent) => {

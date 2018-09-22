@@ -21,7 +21,8 @@
         <div class="extras" v-for="(extrafield, index) in event.extraFields" :key="index">
             {{ extrafield.key }} : {{ extrafield.value }}
         </div>
-        <button v-if="userEmail !== event.organizeremail" @click="register" class="register">Register</button>
+        <button v-if="userEmail !== event.organizeremail && !event.registered" @click="register" class="register">Register</button>
+        <button v-if="userEmail !== event.organizeremail && event.registered" :disabled="event.registered" class="register">Registered</button>
         <button v-if="userEmail === event.organizeremail" @click="editEvent" class="edit">Edit</button>
         <button v-if="userEmail === event.organizeremail" class="delete" @click="deleteEvent">Delete</button>
     </div>
@@ -34,7 +35,7 @@ export default {
     computed: {
         userEmail(){
             return this.$store.state.user.email
-        }
+        },
     },
     methods: {
         editEvent(){
@@ -42,7 +43,7 @@ export default {
             this.$router.push({ path: `/create` })
         },
         register() {
-
+            this.$store.dispatch('setRegisteredAction', this.event.id)
         },
         deleteEvent(){
             this.$store.dispatch('deleteSelectedEvent', this.event.id)

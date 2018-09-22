@@ -9,7 +9,8 @@
         "participantscount" : 60,
         "tags" : "Outdoor Activity",
         "organizeremail" : "test@test.com",
-        "extraFields" : []
+        "extraFields" : [],
+        "registered" : false
     },
     {
         "id" : 37402,
@@ -21,6 +22,20 @@
         "participantscount" : 100,
         "tags" : "Outdoor activity",
         "organizeremail" : "test1@test.com",
-        "extraFields" : []
+        "extraFields" : [],
+        "registered" : false
+    },
+    {
+        "id" : 83424,
+        "name" : "Hackathon",
+        "description" : "Calling out fellow coder for developing some cool apps",
+        "duration" : "24 hours",
+        "location" : "Whitefield",
+        "fees" : 0,
+        "participantscount" : 60,
+        "tags" : "Technology",
+        "organizeremail" : "test1@test.com",
+        "extraFields" : [],
+        "registered" : true
     }
 ]

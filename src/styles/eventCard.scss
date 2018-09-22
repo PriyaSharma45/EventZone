@@ -20,6 +20,11 @@
     background: green;
 }
 
+.register:disabled {
+    background: #ccc !important;
+    color: white !important;
+}
+
 .edit {
     margin: 0 0 10px 5px;
     padding: 10px;
