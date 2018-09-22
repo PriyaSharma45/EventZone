@@ -133,7 +133,7 @@ export default {
             this.duration = this.currentEvent.duration
             this.location = this.currentEvent.location
             this.fees = this.currentEvent.fees
-            this.maxparticipants = this.currentEvent.maxparticipants
+            this.maxparticipants = this.currentEvent.participantscount
             this.tags = this.currentEvent.tags
             this.extraFields = this.currentEvent.extraFields
         }
@@ -147,7 +147,7 @@ export default {
                 duration: this.duration,
                 location: this.location,
                 fees: this.fees,
-                maxparticipants: this.maxparticipants,
+                participantscount: this.maxparticipants,
                 tags: this.tags,
                 organizeremail: this.email,
                 extraFields: this.extraFields
