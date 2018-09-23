@@ -19,7 +19,7 @@ router.beforeEach((to, from, next) => {
 Vue.use(Vuelidate)
 
 new Vue({
-  el: '#app',
+  el: '#app', //First vue instance to be created
   router,
   store,
   render: h => h(App)
